@@ -1,0 +1,4 @@
+dependencies {
+    // 使用自定义起动模块
+    compile project(':autumn-starter')
+}
