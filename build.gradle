@@ -40,10 +40,15 @@ buildscript {
         jcenter()
         mavenCentral()
     }
+    // 配置构建脚本的依赖
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE"
+    }
 }
 
 // 配置该项​​目的插件
 apply plugin: 'idea'
+apply plugin: "io.spring.dependency-management"
 
 // 配置该项​​目的存储库
 repositories {
@@ -59,6 +64,7 @@ subprojects {
     // 配置子项目的插件
     apply plugin: 'java'
     apply plugin: 'idea'
+    apply plugin: "io.spring.dependency-management"
     // 配置子项目的JVM版本
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -70,8 +76,16 @@ subprojects {
         jcenter()
         mavenCentral()
     }
+    // 配置子项目的依赖管理
+    dependencyManagement {
+        imports {
+            // 使用 Spring IO Platform 管理第三方框架的版本
+            mavenBom 'io.spring.platform:platform-bom:Brussels-SR6'
+        }
+    }
     // 配置子项目的依赖
     dependencies {
-        testCompile 'junit:junit:4.12'
+        compile 'org.springframework.boot:spring-boot-starter'
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
     }
 }
