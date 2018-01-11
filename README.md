@@ -12,6 +12,8 @@
 
 * autumn-starter 起动模块
 
+* autumn-example 演示模块
+
 * 开源协议
 
 ## 开源协议

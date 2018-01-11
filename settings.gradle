@@ -19,3 +19,4 @@ rootProject.name = 'autumn'
 
 include 'autumn-uua'
 include 'autumn-starter'
+include 'autumn-example'
