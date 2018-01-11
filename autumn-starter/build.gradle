@@ -1,0 +1,6 @@
+dependencies {
+    // 支持 Web 应用开发，包含 Tomcat 和 spring-mvc
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    // 使用自定义授权管理模块
+    compile project(':autumn-uua')
+}
