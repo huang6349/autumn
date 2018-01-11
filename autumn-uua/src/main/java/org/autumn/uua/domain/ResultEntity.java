@@ -1,4 +1,4 @@
-package org.autumn.domain;
+package org.autumn.uua.domain;
 
 import java.io.Serializable;
 

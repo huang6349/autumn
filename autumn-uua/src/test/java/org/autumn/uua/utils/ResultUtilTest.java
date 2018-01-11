@@ -1,12 +1,10 @@
-package org.autumn.utils;
+package org.autumn.uua.utils;
 
-import org.autumn.domain.ResultEntity;
+import org.autumn.uua.domain.ResultEntity;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class ResultUtilTest {
 

@@ -1,6 +1,6 @@
-package org.autumn.utils;
+package org.autumn.uua.utils;
 
-import org.autumn.domain.ResultEntity;
+import org.autumn.uua.domain.ResultEntity;
 
 /**
  * 响应客户端请求，返回JSON数据的工具类
