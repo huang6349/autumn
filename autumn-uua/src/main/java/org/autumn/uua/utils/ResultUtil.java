@@ -5,7 +5,7 @@ import org.autumn.uua.domain.ResultEntity;
 /**
  * 响应客户端请求，返回JSON数据的工具类
  */
-final class ResultUtil {
+public final class ResultUtil {
 
     /**
      * 请求成功，响应的状态码
@@ -30,7 +30,7 @@ final class ResultUtil {
      * @param data 请求成功，响应的数据
      * @return ResultEntity
      */
-    static ResultEntity success(Object data) {
+    public static ResultEntity success(Object data) {
         return new ResultEntity(SUCCESS, "请求成功", data);
     }
 
@@ -39,7 +39,7 @@ final class ResultUtil {
      *
      * @return ResultEntity
      */
-    static ResultEntity error() {
+    public static ResultEntity error() {
         return new ResultEntity(ERROR, "请求失败");
     }
 
@@ -49,7 +49,7 @@ final class ResultUtil {
      * @param message 请求失败，响应的信息
      * @return ResultEntity
      */
-    static ResultEntity error(String message) {
+    public static ResultEntity error(String message) {
         return new ResultEntity(ERROR, message);
     }
 
@@ -59,7 +59,7 @@ final class ResultUtil {
      * @param state 请求失败，响应的状态码
      * @return ResultEntity
      */
-    static ResultEntity error(Integer state) {
+    public static ResultEntity error(Integer state) {
         return new ResultEntity(state, "请求失败");
     }
 
@@ -70,7 +70,7 @@ final class ResultUtil {
      * @param message 请求失败，响应的信息
      * @return ResultEntity
      */
-    static ResultEntity error(Integer state, String message) {
+    public static ResultEntity error(Integer state, String message) {
         return new ResultEntity(state, message);
     }
 
@@ -82,7 +82,7 @@ final class ResultUtil {
      * @param data    请求失败，响应的数据
      * @return ResultEntity
      */
-    static ResultEntity error(Integer state, String message, Object data) {
+    public static ResultEntity error(Integer state, String message, Object data) {
         return new ResultEntity(state, message, data);
     }
 }
