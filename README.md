@@ -10,6 +10,8 @@
 
 * autumn-uua 授权管理模块
 
+* autumn-starter 起动模块
+
 * 开源协议
 
 ## 开源协议

@@ -18,3 +18,4 @@ include 'services:webservice'
 rootProject.name = 'autumn'
 
 include 'autumn-uua'
+include 'autumn-starter'
