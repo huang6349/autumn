@@ -42,13 +42,15 @@ buildscript {
     }
     // 配置构建脚本的依赖
     dependencies {
-        classpath "io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE"
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE'
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE'
     }
 }
 
 // 配置该项​​目的插件
 apply plugin: 'idea'
-apply plugin: "io.spring.dependency-management"
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
 
 // 配置该项​​目的存储库
 repositories {
@@ -64,7 +66,8 @@ subprojects {
     // 配置子项目的插件
     apply plugin: 'java'
     apply plugin: 'idea'
-    apply plugin: "io.spring.dependency-management"
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.springframework.boot'
     // 配置子项目的JVM版本
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -81,6 +84,8 @@ subprojects {
         imports {
             // 使用 Spring IO Platform 管理第三方框架的版本
             mavenBom 'io.spring.platform:platform-bom:Brussels-SR6'
+            // 使用 Spring Cloud 构建统一配置中心
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Edgware.RELEASE'
         }
     }
     // 配置子项目的依赖
