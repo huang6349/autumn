@@ -17,6 +17,8 @@ buildscript {
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+    // 使用 H2 存储数据
+    compile 'com.h2database:h2'
     // 使用自定义起动模块
     compile project(':autumn-starter')
 }

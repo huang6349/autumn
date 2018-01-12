@@ -1,6 +1,10 @@
 dependencies {
     // 支持 Web 应用开发，包含 Tomcat 和 spring-mvc
     compile 'org.springframework.boot:spring-boot-starter-web'
+    // 支持使用 JDBC 访问数据库
+    compile 'org.springframework.boot:spring-boot-starter-jdbc'
+    // 包含 spring-data-jpa、spring-orm 和 Hibernate 来支持 JPA
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     // 使用自定义授权管理模块
     compile project(':autumn-uua')
 }
