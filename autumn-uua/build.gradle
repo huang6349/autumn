@@ -5,4 +5,6 @@ dependencies {
     compile 'commons-lang:commons-lang'
     compile 'commons-collections:commons-collections'
     compile 'commons-beanutils:commons-beanutils'
+    // 使用自定义核心工具包模块
+    compile project(':autumn-commons')
 }
