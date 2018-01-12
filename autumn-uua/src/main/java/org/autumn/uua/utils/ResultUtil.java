@@ -27,6 +27,15 @@ public final class ResultUtil {
     /**
      * 客户端请求成功，响应的数据
      *
+     * @return ResultEntity
+     */
+    public static ResultEntity success() {
+        return new ResultEntity(SUCCESS, "请求成功");
+    }
+
+    /**
+     * 客户端请求成功，响应的数据
+     *
      * @param data 请求成功，响应的数据
      * @return ResultEntity
      */
