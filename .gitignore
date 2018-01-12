@@ -67,6 +67,7 @@ gradle-app.setting
 *.ipr
 *.ids
 *.orig
+out/
 classes/
 
 ######################
