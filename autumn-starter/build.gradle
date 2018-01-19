@@ -5,6 +5,8 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-jdbc'
     // 包含 spring-data-jpa、spring-orm 和 Hibernate 来支持 JPA
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // 使用 Kaptcha 构建验证码
+    compile 'com.github.penggle:kaptcha:2.3.2'
     // 使用自定义授权管理模块
     compile project(':autumn-uua')
     // 使用自定义核心工具包模块
