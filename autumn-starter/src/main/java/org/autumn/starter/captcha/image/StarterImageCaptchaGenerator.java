@@ -21,7 +21,7 @@ public class StarterImageCaptchaGenerator implements CaptchaGenerator {
 
     @Override
     public Captcha generate() {
-        logger.info("完成图形验证码的生成");
+        logger.info("图形验证码的生成");
         String capText = defaultKaptcha.createText();
         int expireIn = 300;
         BufferedImage bi = defaultKaptcha.createImage(capText);

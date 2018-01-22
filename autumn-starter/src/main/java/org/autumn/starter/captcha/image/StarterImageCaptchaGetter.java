@@ -18,7 +18,7 @@ public class StarterImageCaptchaGetter implements ImageCaptchaGetter {
 
     @Override
     public void get(ServletWebRequest request, ImageCaptcha imageCaptcha) throws IOException {
-        logger.info("完成图形验证码的获取");
+        logger.info("图形验证码的获取");
         ServletOutputStream out = request.getResponse().getOutputStream();
         ImageIO.write(imageCaptcha.getImage(), "jpg", out);
         try {
