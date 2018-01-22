@@ -55,7 +55,7 @@ public class ExampleCaptchaRepository implements CaptchaRepository {
     private String buildKey(ServletWebRequest request) {
         String clientId = request.getHeader(CLIENT_ID);
         if (StringUtils.isBlank(clientId)) {
-            throw new CaptchaException("请在请求头中携带[" + CLIENT_ID + "]参数");
+            throw new RuntimeException("请在请求头中携带[" + CLIENT_ID + "]参数");
         }
         return clientId;
     }

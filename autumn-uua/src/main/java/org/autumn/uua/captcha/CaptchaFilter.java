@@ -1,6 +1,8 @@
 package org.autumn.uua.captcha;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringUtils;
+import org.autumn.commons.utils.ResultUtil;
 import org.autumn.uua.captcha.enums.CaptchaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +43,9 @@ public class CaptchaFilter extends OncePerRequestFilter implements InitializingB
     @Autowired
     private CaptchaProcessorProvice captchaProcessorProvice;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     /**
      * 存放所有需要校验验证码的URL
      */
@@ -72,6 +77,11 @@ public class CaptchaFilter extends OncePerRequestFilter implements InitializingB
                 captchaProcessorProvice.findCaptchaProcessor(type).validate(new ServletWebRequest(request, response));
             } catch (CaptchaException e) {
                 authenticationFailureHandler.onAuthenticationFailure(request, response, e);
+                return;
+            } catch (Exception e) {
+                response.setCharacterEncoding("UTF-8");
+                response.setContentType("application/json;charset=utf-8");
+                response.getWriter().write(objectMapper.writeValueAsString(ResultUtil.error(e.getMessage())));
                 return;
             }
         }

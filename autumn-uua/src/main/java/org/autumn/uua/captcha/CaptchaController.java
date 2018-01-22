@@ -1,7 +1,6 @@
 package org.autumn.uua.captcha;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,9 +14,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 public class CaptchaController {
-
-    @Autowired
-    private AuthenticationFailureHandler authenticationFailureHandler;
 
     /**
      * 注入授权验证码处理器的服务提供类，{@link CaptchaProcessorProvice}接口的实现
@@ -35,11 +31,6 @@ public class CaptchaController {
      */
     @GetMapping("/captcha/{type}")
     public void create(HttpServletRequest request, HttpServletResponse response, @PathVariable String type) throws Exception {
-        try {
-            captchaProcessorProvice.findCaptchaProcessor(type).create(new ServletWebRequest(request, response));
-        } catch (CaptchaException e) {
-            authenticationFailureHandler.onAuthenticationFailure(request, response, e);
-            return;
-        }
+        captchaProcessorProvice.findCaptchaProcessor(type).create(new ServletWebRequest(request, response));
     }
 }

@@ -28,7 +28,8 @@ public class UUAAuthenctiationFailureHandler extends SimpleUrlAuthenticationFail
         logger.info("UUA授权认证失败，" + exception.getMessage());
 
         // super.onAuthenticationFailure(request, response, exception);
-        response.setContentType("application/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json;charset=utf-8");
         response.getWriter().write(objectMapper.writeValueAsString(ResultUtil.error(HttpStatus.UNAUTHORIZED.value(), exception.getMessage())));
     }
 }

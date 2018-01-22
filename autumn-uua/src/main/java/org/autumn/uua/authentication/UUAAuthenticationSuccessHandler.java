@@ -27,7 +27,8 @@ public class UUAAuthenticationSuccessHandler extends SavedRequestAwareAuthentica
         logger.info("UUA授权认证成功");
 
         // super.onAuthenticationSuccess(request, response, authentication);
-        response.setContentType("application/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json;charset=utf-8");
         response.getWriter().write(objectMapper.writeValueAsString(ResultUtil.success("UUA授权认证成功")));
     }
 }
