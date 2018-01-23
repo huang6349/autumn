@@ -7,4 +7,8 @@ dependencies {
     compile 'commons-beanutils:commons-beanutils'
     // 使用自定义核心工具包模块
     compile project(':autumn-commons')
+    // 使 Spring 支持 ConfigurationProperties 的配置
+    optional('org.springframework.boot:spring-boot-configuration-processor') {
+        exclude group: 'com.vaadin.external.google', module: 'android-json'
+    }
 }
