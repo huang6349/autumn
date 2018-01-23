@@ -42,8 +42,13 @@ buildscript {
     }
     // 配置构建脚本的依赖
     dependencies {
-        classpath 'io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE'
+
     }
+}
+
+// 配置该项​​目的构建插件
+plugins {
+    id 'io.spring.dependency-management' version '1.0.4.RELEASE'
 }
 
 // 配置该项​​目的插件
@@ -62,13 +67,14 @@ repositories {
 // 配置该项​​目的子项目
 subprojects {
     // 配置子项目的插件
-    apply plugin: 'maven'
-    apply plugin: 'war'
-    apply plugin: 'idea'
-    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
     // 配置子项目的JVM版本
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
+    apply plugin: 'maven'
+    apply plugin: 'war'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'idea'
     // 配置子项目的存储库
     repositories {
         mavenLocal()
