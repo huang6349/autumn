@@ -37,12 +37,14 @@ buildscript {
         mavenLocal()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
         maven { url 'http://repo2.maven.org/maven2' }
+        maven { url 'http://repo.spring.io/plugins-release' }
         jcenter()
         mavenCentral()
     }
     // 配置构建脚本的依赖
     dependencies {
-
+        // 为 dependencies 提供额外的 optional 和 provided 的支持
+        classpath 'io.spring.gradle:propdeps-plugin:0.0.9.RELEASE'
     }
 }
 
@@ -52,7 +54,6 @@ plugins {
 }
 
 // 配置该项​​目的插件
-apply plugin: 'maven'
 apply plugin: 'idea'
 
 // 配置该项​​目的存储库
@@ -73,6 +74,7 @@ subprojects {
     targetCompatibility = 1.8
     apply plugin: 'maven'
     apply plugin: 'war'
+    apply plugin: 'propdeps'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'idea'
     // 配置子项目的存储库
