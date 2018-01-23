@@ -1,6 +1,8 @@
 dependencies {
     // 核心启动器，包括自动配置支持，日志记录和YAML
-    compile 'org.springframework.boot:spring-boot-starter'
+    compile('org.springframework.boot:spring-boot-starter') {
+        exclude group: 'com.vaadin.external.google', module: 'android-json'
+    }
     // 支持 Web 应用开发，包含 Tomcat 和 spring-mvc
     compile 'org.springframework.boot:spring-boot-starter-web'
     // 支持使用 JDBC 访问数据库
