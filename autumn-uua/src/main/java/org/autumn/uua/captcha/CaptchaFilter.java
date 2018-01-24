@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringUtils;
 import org.autumn.commons.utils.ResultUtil;
 import org.autumn.uua.captcha.enums.CaptchaType;
+import org.autumn.uua.properties.SecurityProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -43,8 +44,17 @@ public class CaptchaFilter extends OncePerRequestFilter implements InitializingB
     @Autowired
     private CaptchaProcessorProvice captchaProcessorProvice;
 
+    /**
+     * 高性能JSON处理器
+     */
     @Autowired
     private ObjectMapper objectMapper;
+
+    /**
+     * 系统中的配置文件
+     */
+    @Autowired
+    private SecurityProperties securityProperties;
 
     /**
      * 存放所有需要校验验证码的URL
@@ -65,7 +75,21 @@ public class CaptchaFilter extends OncePerRequestFilter implements InitializingB
     public void afterPropertiesSet() throws ServletException {
         super.afterPropertiesSet();
 
-        urlMap.put("/uua", CaptchaType.IMAGE);
+        addUrlToMap(securityProperties.getCaptcha().getImage().getUrl(), CaptchaType.IMAGE);
+    }
+
+    /**
+     * 将系统中配置的需要校验验证码的URL根据校验的类型放入map
+     *
+     * @param urlString 需要校验验证码的URL
+     * @param type      校验码的类型
+     */
+    protected void addUrlToMap(String urlString, CaptchaType type) {
+        if (StringUtils.isNotBlank(urlString)) {
+            for (String url : StringUtils.splitByWholeSeparatorPreserveAllTokens(urlString, ",")) {
+                urlMap.put(url, type);
+            }
+        }
     }
 
     @Override

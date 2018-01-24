@@ -3,6 +3,7 @@ package org.autumn.uua.captcha.impl;
 import org.apache.commons.lang.StringUtils;
 import org.autumn.uua.captcha.*;
 import org.autumn.uua.captcha.enums.CaptchaType;
+import org.autumn.uua.properties.SecurityProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,12 @@ public abstract class AbstractCaptchaProcessor<T extends Captcha> implements Cap
     private CaptchaRepository captchaRepository;
 
     /**
+     * 系统中的配置文件
+     */
+    @Autowired
+    private SecurityProperties securityProperties;
+
+    /**
      * 创建授权验证码
      *
      * @param request 请求
@@ -59,7 +66,7 @@ public abstract class AbstractCaptchaProcessor<T extends Captcha> implements Cap
         T t = (T) captchaRepository.get(request, type);
         String codeInRequest;
         try {
-            codeInRequest = ServletRequestUtils.getStringParameter(request.getRequest(), type.getParamNameOnValidate());
+            codeInRequest = ServletRequestUtils.getStringParameter(request.getRequest(), securityProperties.getCaptcha().getParameter());
         } catch (ServletRequestBindingException e) {
             e.printStackTrace();
             throw new CaptchaException(type.getParamNoteOnValidate() + "获取失败");

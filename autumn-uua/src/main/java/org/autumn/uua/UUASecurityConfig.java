@@ -1,10 +1,13 @@
 package org.autumn.uua;
 
+import org.autumn.uua.properties.SecurityProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
+@EnableConfigurationProperties(SecurityProperties.class)
 public class UUASecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
