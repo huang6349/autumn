@@ -41,6 +41,7 @@ buildscript {
         jcenter()
         mavenCentral()
     }
+
     // 配置构建脚本的依赖
     dependencies {
         // 为 dependencies 提供额外的 optional 和 provided 的支持
@@ -72,11 +73,13 @@ subprojects {
     // 配置子项目的JVM版本
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
+
     apply plugin: 'maven'
     apply plugin: 'war'
     apply plugin: 'propdeps'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'idea'
+
     // 配置子项目的存储库
     repositories {
         mavenLocal()
@@ -85,6 +88,7 @@ subprojects {
         jcenter()
         mavenCentral()
     }
+
     // 配置子项目的依赖管理
     dependencyManagement {
         imports {
@@ -94,8 +98,11 @@ subprojects {
             mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Edgware.RELEASE'
         }
     }
+
     // 配置子项目的依赖
     dependencies {
         testCompile 'junit:junit'
     }
+
+    compileJava.dependsOn(processResources)
 }

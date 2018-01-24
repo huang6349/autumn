@@ -1,6 +1,0 @@
-# Spring的配置
-spring:
-  # 环境的配置
-  profiles:
-    # 激活环境配置
-    active: dev
