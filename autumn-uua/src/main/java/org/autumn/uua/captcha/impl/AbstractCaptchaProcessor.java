@@ -35,7 +35,7 @@ public abstract class AbstractCaptchaProcessor<T extends Captcha> implements Cap
     private CaptchaRepository captchaRepository;
 
     /**
-     * 系统中的配置文件
+     * 注入系统中的授权配置
      */
     @Autowired
     private SecurityProperties securityProperties;
@@ -60,7 +60,7 @@ public abstract class AbstractCaptchaProcessor<T extends Captcha> implements Cap
      * @param request 请求
      */
     @Override
-    public void validate(ServletWebRequest request) {
+    public void check(ServletWebRequest request) {
         logger.info("校验授权验证码");
         CaptchaType type = getCaptchaType();
         T t = (T) captchaRepository.get(request, type);

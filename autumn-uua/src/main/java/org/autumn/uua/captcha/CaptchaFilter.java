@@ -33,31 +33,31 @@ public class CaptchaFilter extends OncePerRequestFilter implements InitializingB
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
-     * 验证码校验失败处理器
+     * 授权验证码校验失败的处理器
      */
     @Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
 
     /**
-     * 系统中的校验码处理器
+     * 注入系统中的授权验证码校验处理器
      */
     @Autowired
     private CaptchaProcessorProvice captchaProcessorProvice;
 
     /**
-     * 高性能JSON处理器
+     * 注入高性能JSON处理器
      */
     @Autowired
     private ObjectMapper objectMapper;
 
     /**
-     * 系统中的配置文件
+     * 注入系统中的授权配置
      */
     @Autowired
     private SecurityProperties securityProperties;
 
     /**
-     * 存放所有需要校验验证码的URL
+     * 存放所有需要校验授权验证码的URL
      */
     private Map<String, CaptchaType> urlMap = new HashMap<>();
 
@@ -79,10 +79,10 @@ public class CaptchaFilter extends OncePerRequestFilter implements InitializingB
     }
 
     /**
-     * 将系统中配置的需要校验验证码的URL根据校验的类型放入map
+     * 将系统中配置的需要校验授权验证码的URL根据授权验证码的类型放入MAP
      *
-     * @param urlString 需要校验验证码的URL
-     * @param type      校验码的类型
+     * @param urlString 需要校验授权验证码的URL
+     * @param type      授权验证码的类型
      */
     protected void addUrlToMap(String urlString, CaptchaType type) {
         if (StringUtils.isNotBlank(urlString)) {
@@ -92,13 +92,22 @@ public class CaptchaFilter extends OncePerRequestFilter implements InitializingB
         }
     }
 
+    /**
+     * 拦截请求，校验授权验证码
+     *
+     * @param request  请求
+     * @param response 响应
+     * @param chain    过滤器链
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         CaptchaType type = getCaptchaType(request);
         if (type != null) {
-            logger.info("校验请求[" + request.getRequestURI() + "]中的验证码，验证码类型为" + type);
+            logger.info("校验请求[" + request.getRequestURI() + "]中的验证码，验证码类型为：" + type.getParamNoteOnValidate());
             try {
-                captchaProcessorProvice.findCaptchaProcessor(type).validate(new ServletWebRequest(request, response));
+                captchaProcessorProvice.findCaptchaProcessor(type).check(new ServletWebRequest(request, response));
             } catch (CaptchaException e) {
                 authenticationFailureHandler.onAuthenticationFailure(request, response, e);
                 return;
@@ -113,7 +122,7 @@ public class CaptchaFilter extends OncePerRequestFilter implements InitializingB
     }
 
     /**
-     * 获取校验码的类型
+     * 获取授权验证码的类型
      *
      * @param request 请求
      * @return 如果当前请求不需要校验，则返回null

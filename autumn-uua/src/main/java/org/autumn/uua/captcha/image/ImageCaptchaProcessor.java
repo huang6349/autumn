@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 
-@Component("imageCaptchaProcessor")
+@Component
 public class ImageCaptchaProcessor extends AbstractCaptchaProcessor<ImageCaptcha> {
 
     @Autowired

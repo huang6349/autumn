@@ -19,7 +19,7 @@ public class CaptchaProcessorProvice {
     private Map<String, CaptchaProcessor> captchaProcessorMap;
 
     /**
-     * 查找系统中的处理器
+     * 查找系统中的授权验证码处理器
      *
      * @param type 授权验证码的类型
      * @return CaptchaProcessor
@@ -29,7 +29,7 @@ public class CaptchaProcessorProvice {
     }
 
     /**
-     * 查找系统中的处理器
+     * 查找系统中的授权验证码处理器
      *
      * @param type 授权验证码的类型
      * @return CaptchaProcessor

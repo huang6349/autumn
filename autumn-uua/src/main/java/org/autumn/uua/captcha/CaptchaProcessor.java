@@ -20,5 +20,5 @@ public interface CaptchaProcessor {
      *
      * @param request 请求
      */
-    void validate(ServletWebRequest request);
+    void check(ServletWebRequest request);
 }

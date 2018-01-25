@@ -28,6 +28,9 @@ public class CaptchaController {
     @Autowired
     private CaptchaProcessorProvice captchaProcessorProvice;
 
+    /**
+     * 注入高性能JSON处理器
+     */
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -41,7 +44,7 @@ public class CaptchaController {
      */
     @GetMapping("/captcha/{type}")
     public void create(HttpServletRequest request, HttpServletResponse response, @PathVariable String type) throws Exception {
-        logger.error("调用[" + StringUtils.upperCase(type) + "]授权验证码处理器");
+        logger.info("调用[" + StringUtils.upperCase(type) + "]授权验证码处理器");
         try {
             captchaProcessorProvice.findCaptchaProcessor(type).create(new ServletWebRequest(request, response));
         } catch (Exception e) {

@@ -21,7 +21,7 @@ public class Captcha implements Serializable {
     private LocalDateTime expireTime;
 
     /**
-     * 设置验证码
+     * 设置授权验证码
      *
      * @param code     授权验证码
      * @param expireIn 授权验证码的有效期时间（单位：秒）
@@ -33,7 +33,7 @@ public class Captcha implements Serializable {
     }
 
     /**
-     * 设置验证码
+     * 设置授权验证码
      *
      * @param code       授权验证码
      * @param expireTime 授权验证码的到期时间
@@ -45,7 +45,7 @@ public class Captcha implements Serializable {
     }
 
     /**
-     * 判断验证码是否过期
+     * 判断授权验证码是否过期
      *
      * @return boolean
      */

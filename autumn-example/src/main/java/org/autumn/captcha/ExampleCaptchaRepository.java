@@ -53,8 +53,10 @@ public class ExampleCaptchaRepository implements CaptchaRepository {
     }
 
     private String buildKey(ServletWebRequest request) {
+        logger.info("从请求头中获取[" + CLIENT_ID + "]");
         String clientId = request.getHeader(CLIENT_ID);
         if (StringUtils.isBlank(clientId)) {
+            logger.error("[" + CLIENT_ID + "]参数不存在");
             throw new RuntimeException("请在请求头中携带[" + CLIENT_ID + "]参数");
         }
         return clientId;
